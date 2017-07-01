@@ -1,5 +1,7 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+import Card from './Scripts/Card.js'
 
 var uri = 'api/products';
 ReactDOM.render(
@@ -7,17 +9,7 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-$(document).ready(function () {
-    // Send an AJAX request
-    $.getJSON(uri)
-        .done(function (data) {
-            // On success, 'data' contains a list of products.
-            $.each(data, function (key, item) {
-                // Add a list item for the product.
-                $('<li>', { text: formatItem(item) }).appendTo($('#products'));
-            });
-        });
-});
+var card = new Card();
 
 function formatItem(item) {
     return item.Name + ': $' + item.Price;
@@ -33,8 +25,17 @@ function find() {
             $('#product').text('Error: ' + err);
         });
 }
-$(function () {
-    // Declare a proxy to reference the hub.
+
+$(document).ready(function () {
+    // Send an AJAX request
+    axios.get(uri).then(function (response) {
+        // On success, 'data' contains a list of products.
+        var data = response.data;
+        data.forEach(function (item) {
+            $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+        });
+    });
+
     var chat = $.connection.chatHub;
     // Create a function that the hub can call to broadcast messages.
     chat.client.broadcastMessage = function (name, message) {
@@ -46,7 +47,8 @@ $(function () {
             + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
     };
     // Get the user name and store it to prepend to messages.
-    $('#displayname').val(prompt('Enter your name:', ''));
+    var dateName = new Date();
+    $('#displayname').val(dateName);
     // Set initial focus to message input box.
     $('#message').focus();
     // Start the connection.

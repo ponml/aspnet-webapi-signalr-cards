@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.js" />
+    <Content Include="Scripts\Card.js" />
     <Content Include="webpack.config.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
