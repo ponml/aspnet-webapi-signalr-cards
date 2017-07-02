@@ -100,11 +100,78 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\0_1.svg" />
+    <Content Include="Images\0_10.svg" />
+    <Content Include="Images\0_11.svg" />
+    <Content Include="Images\0_12.svg" />
+    <Content Include="Images\0_13.svg" />
+    <Content Include="Images\0_14.svg" />
+    <Content Include="Images\0_2.svg" />
+    <Content Include="Images\0_3.svg" />
+    <Content Include="Images\0_4.svg" />
+    <Content Include="Images\0_5.svg" />
+    <Content Include="Images\0_6.svg" />
+    <Content Include="Images\0_7.svg" />
+    <Content Include="Images\0_8.svg" />
+    <Content Include="Images\0_9.svg" />
+    <Content Include="Images\1_1.svg" />
+    <Content Include="Images\1_10.svg" />
+    <Content Include="Images\1_11.svg" />
+    <Content Include="Images\1_12.svg" />
+    <Content Include="Images\1_13.svg" />
+    <Content Include="Images\1_14.svg" />
+    <Content Include="Images\1_2.svg" />
+    <Content Include="Images\1_3.svg" />
+    <Content Include="Images\1_4.svg" />
+    <Content Include="Images\1_5.svg" />
+    <Content Include="Images\1_6.svg" />
+    <Content Include="Images\1_7.svg" />
+    <Content Include="Images\1_8.svg" />
+    <Content Include="Images\1_9.svg" />
+    <Content Include="Images\2_1.svg" />
+    <Content Include="Images\2_10.svg" />
+    <Content Include="Images\2_11.svg" />
+    <Content Include="Images\2_12.svg" />
+    <Content Include="Images\2_13.svg" />
+    <Content Include="Images\2_14.svg" />
+    <Content Include="Images\2_2.svg" />
+    <Content Include="Images\2_3.svg" />
+    <Content Include="Images\2_4.svg" />
+    <Content Include="Images\2_5.svg" />
+    <Content Include="Images\2_6.svg" />
+    <Content Include="Images\2_7.svg" />
+    <Content Include="Images\2_8.svg" />
+    <Content Include="Images\2_9.svg" />
+    <Content Include="Images\3_1.svg" />
+    <Content Include="Images\3_10.svg" />
+    <Content Include="Images\3_11.svg" />
+    <Content Include="Images\3_12.svg" />
+    <Content Include="Images\3_13.svg" />
+    <Content Include="Images\3_14.svg" />
+    <Content Include="Images\3_2.svg" />
+    <Content Include="Images\3_3.svg" />
+    <Content Include="Images\3_4.svg" />
+    <Content Include="Images\3_5.svg" />
+    <Content Include="Images\3_6.svg" />
+    <Content Include="Images\3_7.svg" />
+    <Content Include="Images\3_8.svg" />
+    <Content Include="Images\3_9.svg" />
+    <Content Include="Images\4_1.svg" />
+    <Content Include="Images\4_2.svg" />
+    <Content Include="Images\4_3.svg" />
+    <Content Include="Images\back.png" />
+    <Content Include="Images\clubs.svg" />
+    <Content Include="Images\diamonds.svg" />
+    <Content Include="Images\hearts.svg" />
+    <Content Include="Images\spades.svg" />
     <Content Include="index.js" />
     <Content Include="Scripts\Card.js" />
+    <Content Include="Styles\main.css" />
     <Content Include="webpack.config.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
+    <Content Include="Tables\cards.json" />
+    <Content Include="Tables\json-schema.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -123,13 +190,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Card.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

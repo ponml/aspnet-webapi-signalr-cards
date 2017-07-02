@@ -1,0 +1,410 @@
+﻿[
+  {
+    "Id": "39f63515-8867-4be6-b36d-0d080610c157",
+    "Name": "Ace of Spades",
+    "Value": 1,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_1.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "0445d49d-73d2-452d-8535-847ad4f44c2c",
+    "Name": "Two of Spades",
+    "Value": 2,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_2.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "39696914-11af-484b-8f80-2f867d71845f",
+    "Name": "Three of Spades",
+    "Value": 3,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_3.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "9ba9fb06-8145-40e1-acb5-aae1dd5c865c",
+    "Name": "Four of Spades",
+    "Value": 4,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_4.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "e7194636-de4e-4ee8-972f-2b5482740ca5",
+    "Name": "Five of Spades",
+    "Value": 5,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_5.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "bb1b71ec-e4de-4e83-ac0c-e095da7efca4",
+    "Name": "Six of Spades",
+    "Value": 6,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_6.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "4fc44770-f3ef-463d-aa90-9be3cb1ad4af",
+    "Name": "Seven of Spades",
+    "Value": 7,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_7.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "3718fba4-2576-473c-8d26-20ff868ecaaa",
+    "Name": "Eight of Spades",
+    "Value": 8,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_8.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "fba62c0d-ba32-4167-8f18-c88375198208",
+    "Name": "Nine of Spades",
+    "Value": 9,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_9.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "017b6332-a465-4b4f-9600-a9165e6dd645",
+    "Name": "Ten of Spades",
+    "Value": 10,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_10.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "724f30bb-2321-440a-ab0d-52915f3ff46f",
+    "Name": "Jack of Spades",
+    "Value": 11,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_11.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "7cc6b255-243f-41cc-a6c7-3097201e5128",
+    "Name": "Queen of Spades",
+    "Value": 12,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_12.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "64095cdc-09f3-4272-b909-af2af17660f8",
+    "Name": "King of Spades",
+    "Value": 13,
+    "Suit": "Spades",
+    "FrontImageFileName": "0_13.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "60cacaed-6117-45e0-9867-990590f25d2f",
+    "Name": "Ace of Hearts",
+    "Value": 1,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_1.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "cbf42222-281f-4a49-85b9-3a1eac08a617",
+    "Name": "Two of Hearts",
+    "Value": 2,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_2.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "5b4c6755-e3cd-4ab7-b541-335ea7fd096d",
+    "Name": "Three of Hearts",
+    "Value": 3,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_3.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "01e6838f-e364-4cfa-aaeb-91dec146954d",
+    "Name": "Four of Hearts",
+    "Value": 4,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_4.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "95853939-88a3-4bcc-abd5-07b104ac3c24",
+    "Name": "Five of Hearts",
+    "Value": 5,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_5.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "32f2e113-0514-4895-95ee-37fc6e703856",
+    "Name": "Six of Hearts",
+    "Value": 6,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_6.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "19f0cc1d-fb01-4485-94d4-2a7cb6b3f023",
+    "Name": "Seven of Hearts",
+    "Value": 7,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_7.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "3e0d6512-c26e-4231-b6b9-0840973b933c",
+    "Name": "Eight of Hearts",
+    "Value": 8,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_8.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "b4e815c8-378e-4ded-8085-054218c5e57b",
+    "Name": "Nine of Hearts",
+    "Value": 9,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_9.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "c544f6fd-8669-4f26-9e2b-c5b1e22c49bb",
+    "Name": "Ten of Hearts",
+    "Value": 10,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_10.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "e5c9f95b-d0f3-4b6f-8eb7-b25b9d69bd3e",
+    "Name": "Jack of Hearts",
+    "Value": 11,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_11.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "693478ca-713c-4882-818d-89d09d7deb07",
+    "Name": "Queen of Hearts",
+    "Value": 12,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_12.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "483edb9b-6382-4516-b2ee-07f78ed9a528",
+    "Name": "King of Hearts",
+    "Value": 13,
+    "Suit": "Hearts",
+    "FrontImageFileName": "1_13.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "5e9788e9-ca10-44ba-a092-c1a7f143e1ad",
+    "Name": "Ace of Clubs",
+    "Value": 1,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_1.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "3a2ab204-e1f4-4921-b27d-44f82b2fa0e3",
+    "Name": "Two of Clubs",
+    "Value": 2,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_2.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "37da4d1d-bb14-4141-a0af-6e67ab4a7b50",
+    "Name": "Three of Clubs",
+    "Value": 3,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_3.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "47d891ee-28f7-45ba-8779-639303e84119",
+    "Name": "Four of Clubs",
+    "Value": 4,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_4.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "4522c50c-b625-48ad-bbe8-24bb3e3dd3c6",
+    "Name": "Five of Clubs",
+    "Value": 5,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_5.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "beed652c-0795-4458-adfd-a9d4962c2201",
+    "Name": "Six of Clubs",
+    "Value": 6,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_6.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "894a32ff-b092-42e6-89b7-5e3404378511",
+    "Name": "Seven of Clubs",
+    "Value": 7,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_7.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "2d23efe5-cf17-4905-88c6-bbe6493f92a7",
+    "Name": "Eight of Clubs",
+    "Value": 8,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_8.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "c4d255d8-d137-42d5-8f1d-ad96b1f6e4d0",
+    "Name": "Nine of Clubs",
+    "Value": 9,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_9.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "e97ba4b6-33b0-47bd-b416-8e50af39deb2",
+    "Name": "Ten of Clubs",
+    "Value": 10,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_10.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "59955246-7dbc-4bf1-9c36-e6b78eeae281",
+    "Name": "Jack of Clubs",
+    "Value": 11,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_11.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "9785c50a-2f18-4d08-8860-755993ef1574",
+    "Name": "Queen of Clubs",
+    "Value": 12,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_12.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "72d25b40-0249-4b6e-8cb3-ad31f6f31a27",
+    "Name": "King of Clubs",
+    "Value": 13,
+    "Suit": "Clubs",
+    "FrontImageFileName": "2_13.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "6edf6e01-edb2-4ce6-94eb-a7b9318d4dff",
+    "Name": "Ace of Diamonds",
+    "Value": 1,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_1.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "d2b991ca-971e-4155-bee1-784b95bcf767",
+    "Name": "Two of Diamonds",
+    "Value": 2,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_2.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "5051b56e-26ea-4c89-810e-29d4af1fdd83",
+    "Name": "Three of Diamonds",
+    "Value": 3,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_3.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "357e3dc9-75d2-4aa4-bfcd-40b55751eea0",
+    "Name": "Four of Diamonds",
+    "Value": 4,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_4.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "d420f146-fa5b-424f-9496-aff6377c4d02",
+    "Name": "Five of Diamonds",
+    "Value": 5,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_5.svg",
+    "BackImageFileName": "back.png"
+  },
+  {
+    "Id": "53421e9b-37ee-4e1b-9879-3c962ff613bd",
+    "Name": "Six of Diamonds",
+    "Value": 6,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_6.svg",
+    "BackImageFileName": "back.png"
+  }, {
+    "Id": "0122a5a7-3d1e-43e6-8a49-b9761c6cbf6a",
+    "Name": "Seven of Diamonds",
+    "Value": 7,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_7.svg",
+    "BackImageFileName": "back.png"
+}, {
+    "Id": "d808c1dc-47d7-49cf-bd6e-71d941c88e96",
+    "Name": "Eight of Diamonds",
+    "Value": 8,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_8.svg",
+    "BackImageFileName": "back.png"
+}, {
+    "Id": "a1dd822b-d012-4884-b465-23712bc0b5c4",
+    "Name": "Nine of Diamonds",
+    "Value": 9,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_9.svg",
+    "BackImageFileName": "back.png"
+}, {
+    "Id": "a4b97945-7e63-4244-a611-399d0ec2249c",
+    "Name": "Ten of Diamonds",
+    "Value": 10,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_10.svg",
+    "BackImageFileName": "back.png"
+}, {
+    "Id": "3b4983c3-1a8b-48ae-8c2b-233a0d597e2a",
+    "Name": "Jack of Diamonds",
+    "Value": 11,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_11.svg",
+    "BackImageFileName": "back.png"
+}, {
+    "Id": "eed7ac99-4b72-44b7-9b8d-e02da35b0055",
+    "Name": "Queen of Diamonds",
+    "Value": 12,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_12.svg",
+    "BackImageFileName": "back.png"
+}, {
+    "Id": "293124f1-2a3e-4315-93b6-fbac9d7001d1",
+    "Name": "King of Diamonds",
+    "Value": 13,
+    "Suit": "Diamonds",
+    "FrontImageFileName": "3_13.svg",
+    "BackImageFileName": "back.png"
+}]

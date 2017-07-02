@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Card from './Scripts/Card.js'
 
-var uri = 'api/products';
+var uri = 'api/cards';
 ReactDOM.render(
     <h1>Hello, world!</h1>,
     document.getElementById('root')
@@ -12,27 +12,27 @@ ReactDOM.render(
 var card = new Card();
 
 function formatItem(item) {
-    return item.Name + ': $' + item.Price;
+    return item.Name + ': $' + item.Value;
 }
 
 function find() {
     var id = $('#prodId').val();
     $.getJSON(uri + '/' + id)
         .done(function (data) {
-            $('#product').text(formatItem(data));
+            $('#card').text(formatItem(data));
         })
         .fail(function (jqXHR, textStatus, err) {
-            $('#product').text('Error: ' + err);
+            $('#card').text('Error: ' + err);
         });
 }
 
 $(document).ready(function () {
     // Send an AJAX request
     axios.get(uri).then(function (response) {
-        // On success, 'data' contains a list of products.
+        // On success, 'data' contains a list of cards.
         var data = response.data;
         data.forEach(function (item) {
-            $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+            $('<li>', { text: formatItem(item) }).appendTo($('#cards'));
         });
     });
 
