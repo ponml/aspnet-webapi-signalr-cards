@@ -4,26 +4,20 @@ import axios from 'axios';
 import Card from './Scripts/Card.js'
 
 var uri = 'api/cards';
-ReactDOM.render(
-    <h1>Hello, world!</h1>,
-    document.getElementById('root')
-);
 
-var card = new Card();
+//var foundCard = new Card({
+//    name: "SOME CARd"
+//});
 
 function formatItem(item) {
-    return item.Name + ': $' + item.Value;
+    return item.Name + ': ' + item.Value;
 }
 
 function find() {
-    var id = $('#prodId').val();
-    $.getJSON(uri + '/' + id)
-        .done(function (data) {
-            $('#card').text(formatItem(data));
-        })
-        .fail(function (jqXHR, textStatus, err) {
-            $('#card').text('Error: ' + err);
-        });
+    var id = $('#cardId').val();
+    return axios.get(uri, { params: { id: id } }).then(function (response) {
+        $('#card').text(formatItem(response.data));
+    });
 }
 
 $(document).ready(function () {
@@ -35,6 +29,8 @@ $(document).ready(function () {
             $('<li>', { text: formatItem(item) }).appendTo($('#cards'));
         });
     });
+
+    document.getElementById("find").addEventListener("click", find);
 
     var chat = $.connection.chatHub;
     // Create a function that the hub can call to broadcast messages.
@@ -60,4 +56,11 @@ $(document).ready(function () {
             $('#message').val('').focus();
         });
     });
+
+
+    ReactDOM.render(
+        <Card name="test"/>,
+        document.getElementById('root')
+    );
+
 });
