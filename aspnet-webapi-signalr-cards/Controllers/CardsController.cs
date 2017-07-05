@@ -39,5 +39,16 @@ namespace aspnet_webapi_signalr_cards.Controllers
             }
             return Ok(card);
         }
+
+        public IHttpActionResult GetCard(int value, string suit)
+        {
+            var cards = LoadJson();
+            var card = cards.FirstOrDefault((p) => p.Value == value && p.Suit == suit);
+            if (card == null)
+            {
+                return NotFound();
+            }
+            return Ok(card);
+        }
     }
 }
