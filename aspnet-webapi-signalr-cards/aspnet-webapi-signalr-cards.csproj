@@ -166,6 +166,7 @@
     <Content Include="Images\spades.svg" />
     <Content Include="index.js" />
     <Content Include="Scripts\Card.js" />
+    <Content Include="Scripts\ChatWindow.js" />
     <Content Include="Styles\main.css" />
     <Content Include="webpack.config.js" />
     <Content Include="packages.config" />
