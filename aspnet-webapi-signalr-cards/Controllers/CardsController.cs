@@ -1,4 +1,6 @@
 ﻿using aspnet_webapi_signalr_cards.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,12 +8,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace aspnet_webapi_signalr_cards.Controllers
 {
     public class CardsController : ApiController
     {
+        private string _cardsDB = "CARDS_DB";
         private List<Card> LoadJson()
         {
             var root = AppDomain.CurrentDomain.BaseDirectory;
@@ -29,10 +33,11 @@ namespace aspnet_webapi_signalr_cards.Controllers
             return cards;
         }
 
-        public IHttpActionResult GetCard(Guid id)
+        public async Task<IHttpActionResult> GetCard(ObjectId id)
         {
-            var cards = LoadJson();
-            var card = cards.FirstOrDefault((p) => p.Id == id);
+            var context = new MongoDBContext(_cardsDB);
+            var cards = await context.Database.GetCollection<Deck>("decks").FindAsync<Deck>(x => x.Id == id);
+            var card = cards.FirstOrDefault();
             if (card == null)
             {
                 return NotFound();
@@ -42,8 +47,9 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
         public IHttpActionResult GetCard(int value, string suit)
         {
-            var cards = LoadJson();
-            var card = cards.FirstOrDefault((p) => p.Value == value && p.Suit == suit);
+            var context = new MongoDBContext(_cardsDB);
+            var cards = context.Database.GetCollection<Deck>("decks").Find<Deck>(null);
+            var card = cards.FirstOrDefault();
             if (card == null)
             {
                 return NotFound();
