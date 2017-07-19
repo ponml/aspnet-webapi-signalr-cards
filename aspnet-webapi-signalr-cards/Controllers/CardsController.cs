@@ -52,3 +52,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
         }
     }
 }
+
+
+
+https://stackoverflow.com/questions/38557170/simple-example-using-system-data-sqlite-with-entity-framework-6
