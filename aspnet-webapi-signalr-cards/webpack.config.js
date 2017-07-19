@@ -1,4 +1,5 @@
-﻿const path = require('path');
+﻿/// <binding AfterBuild='Run - Development' />
+const path = require('path');
 
 module.exports = {
 	entry:  './index.js',		

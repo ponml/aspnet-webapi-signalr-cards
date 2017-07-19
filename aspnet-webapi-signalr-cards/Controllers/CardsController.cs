@@ -33,10 +33,25 @@ namespace aspnet_webapi_signalr_cards.Controllers
             return cards;
         }
 
-        public async Task<IHttpActionResult> GetCard(ObjectId id)
+        public IHttpActionResult GetCard(Guid id)
         {
             var context = new MongoDBContext(_cardsDB);
-            var cards = await context.Database.GetCollection<Deck>("decks").FindAsync<Deck>(x => x.Id == id);
+            var cards =
+                from deck in context.Database.GetCollection<Deck>("decks").Find<Deck>(x => x.Name == "Standard").ToList<Deck>()
+                select new
+                {
+                    Id = deck.Id,
+                    Name = deck.Name,
+                    Cards =
+                        from card in deck.Cards
+                        select new
+                        {
+                            Id = card.Id,
+                            Name = card.Name,
+                            Value = card.Value
+                        }
+                };
+
             var card = cards.FirstOrDefault();
             if (card == null)
             {
@@ -45,16 +60,23 @@ namespace aspnet_webapi_signalr_cards.Controllers
             return Ok(card);
         }
 
-        public IHttpActionResult GetCard(int value, string suit)
+        public object Post(Card card)
         {
             var context = new MongoDBContext(_cardsDB);
-            var cards = context.Database.GetCollection<Deck>("decks").Find<Deck>(null);
-            var card = cards.FirstOrDefault();
-            if (card == null)
-            {
-                return NotFound();
-            }
-            return Ok(card);
+            context.Database.Insert
+            return null;
         }
+
+        //public IHttpActionResult GetCard(int value, string suit)
+        //{
+        //    var context = new MongoDBContext(_cardsDB);
+        //    var cards = context.Database.GetCollection<Deck>("decks").Find<Deck>(null);
+        //    var card = cards.FirstOrDefault();
+        //    if (card == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(card);
+        //}
     }
 }
