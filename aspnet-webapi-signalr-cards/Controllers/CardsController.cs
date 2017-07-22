@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -23,13 +24,21 @@ namespace aspnet_webapi_signalr_cards.Controllers
             }
         }
 
-        public List<Card> GetAllCards()
+        public Card[] GetAllCards()
         {
-            var cards = LoadJson();
-            return cards;
+            using (var db = new CardsContext("Data Source=C:\\Program Files\\DB Browser for SQLite\\dbs\\cards.db"))
+            {
+                var cards =
+                    from card in db.Cards
+                    where card.DeckId == 1
+                    select card;
+
+                var result = cards.ToArray();
+                return result;
+            }
         }
 
-        public IHttpActionResult GetCard(Guid id)
+        public IHttpActionResult GetCard(int id)
         {
             var cards = LoadJson();
             var card = cards.FirstOrDefault((p) => p.Id == id);
@@ -55,4 +64,4 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
 
 
-https://stackoverflow.com/questions/38557170/simple-example-using-system-data-sqlite-with-entity-framework-6
+//https://stackoverflow.com/questions/38557170/simple-example-using-system-data-sqlite-with-entity-framework-6
