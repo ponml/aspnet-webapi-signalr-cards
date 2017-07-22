@@ -16,6 +16,7 @@ namespace aspnet_webapi_signalr_cards
                 ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = dataSourceString, ForeignKeys = true }.ConnectionString
             }, true)
         {
+            Database.SetInitializer<CardsContext>(null);
         }
 
         public DbSet<Card> Cards { get; set; }

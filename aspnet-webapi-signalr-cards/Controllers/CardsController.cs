@@ -24,14 +24,18 @@ namespace aspnet_webapi_signalr_cards.Controllers
             }
         }
 
-        public Card[] GetAllCards()
+        public object[] GetAllCards()
         {
-            using (var db = new CardsContext("Data Source=C:\\Program Files\\DB Browser for SQLite\\dbs\\cards.db"))
+            using (var dbContext = new CardsContext("C:\\SQLITE\\dbs\\cards.db"))
             {
                 var cards =
-                    from card in db.Cards
+                    from card in dbContext.Cards
                     where card.DeckId == 1
-                    select card;
+                    select new
+                    {
+                        Id = card.Id,
+                        DeckName = card.Deck.Name
+                    };
 
                 var result = cards.ToArray();
                 return result;
