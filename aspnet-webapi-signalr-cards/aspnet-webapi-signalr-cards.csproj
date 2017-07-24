@@ -207,7 +207,9 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CardsContext.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Controllers\CardsController.cs" />
+    <Compile Include="DBContext.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Card.cs" />
