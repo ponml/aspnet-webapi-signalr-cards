@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 class Card extends React.Component {
     constructor(props) {
         super(props);
+        var me = this;
         this.data = props.data;
     }
 
@@ -19,9 +20,7 @@ class Card extends React.Component {
 
     render() {
         return (
-            <div>
-                <li> {this.data.Name} has value {this.data.Value} and id {this.data.Id} </li>
-            </div>
+            <li> Card "{this.data.Name}" has value {this.data.Value} and id {this.data.Id} </li>
         )
     }
 }
