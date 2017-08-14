@@ -25,6 +25,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
                         Name = deck.Name,
                         Cards = 
                             from card in deck.Cards
+                            orderby card.Suit, card.Value
                             select card
                     }).ToArray();
 
@@ -46,6 +47,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
                         Name = deck.Name,
                         Cards =
                             from card in deck.Cards
+                            orderby card.Suit, card.Value
                             select card
                     });
 

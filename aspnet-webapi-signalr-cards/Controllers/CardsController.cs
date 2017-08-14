@@ -31,6 +31,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
                 var cards =
                     from card in dbContext.Cards
                     where card.DeckId == 1
+                    orderby card.Suit, card.Value
                     select card;
 
                 var result = cards.ToArray();
