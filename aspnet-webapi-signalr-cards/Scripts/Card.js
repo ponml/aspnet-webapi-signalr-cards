@@ -8,7 +8,6 @@ class Card extends React.Component {
     constructor(props) {
         super(props);
         var me = this;
-        this.data = props.data;
     }
 
     componentDidMount() {
@@ -19,9 +18,11 @@ class Card extends React.Component {
 
 
     render() {
-        return (
-            <li> Card "{this.data.Name}" has value {this.data.Value} and id {this.data.Id} </li>
-        )
+        if (this.props.data) {
+            return (<div> Card "{this.props.data.Name}" has value {this.props.data.Value} and id {this.props.data.Id} </div>);
+        } else {
+            return (null);
+        }
     }
 }
 

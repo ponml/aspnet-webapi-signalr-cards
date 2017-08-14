@@ -10,8 +10,12 @@ class Deck extends React.Component {
         var me = this;
         this.data = props.data;
         me.state = {
-            cards: this.data.Cards.map(function (card) {
-                return <Card key={card.Id} data={card} />
+            cards: this.data.Cards.map(function (card, index) {
+                return (
+                    <li key={index}>
+                        <Card key={card.Id} data={card} />
+                    </li>
+                );
             })
         };
     }
@@ -27,9 +31,9 @@ class Deck extends React.Component {
         return (
             <div>
                 <div> The deck {this.data.Name} has {this.data.Cards.length} cards, and id {this.data.Id} </div>
-                <ul>
+                <ol>
                     {this.state.cards}
-                </ul>
+                </ol>
             </div>
         )
     }
