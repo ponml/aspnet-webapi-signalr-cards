@@ -19,7 +19,12 @@ class Card extends React.Component {
 
     render() {
         if (this.props.data) {
-            return (<div> Card "{this.props.data.Name}" has value {this.props.data.Value} and id {this.props.data.Id} </div>);
+            var cardFront = "../Images/" + this.props.data.FrontImageFileName;
+            return (
+                <div>
+                    <img src={cardFront}/>
+                </div>
+            );
         } else {
             return (null);
         }
