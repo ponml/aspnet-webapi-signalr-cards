@@ -1,2 +1,35 @@
 ﻿body {
 }
+
+.flex {
+    display: flex;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 227px;
+    height: 315px;
+    background-repeat: no-repeat;         
+    justify-content: space-between
+}
+
+.fill-width {
+    width: 100%;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+.card .number-top {
+    font-size: 24px;
+}
+
+.card .number-bot {
+    font-size: 24px;
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+}

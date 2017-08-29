@@ -140,7 +140,7 @@ class ChatWindow extends React.Component {
                 </div>
                 <div>
                     <h1>Get Card</h1>
-                    <div>
+                    <div className="flex">
                         <Card data={this.state.foundCard} />
                     </div>
                 </div>
@@ -148,7 +148,7 @@ class ChatWindow extends React.Component {
                     <h1>Insert Card</h1>
                     <textarea value={this.state.cardInsertValue} onChange={this.handlePostCardOnChange}></textarea>
                     <button onClick={this.handlePostCardSubmit}>Post</button>
-                    <div>
+                    <div className="flex">
                         {newCard}
                     </div>
                 </div>
