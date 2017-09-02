@@ -17,6 +17,7 @@
 
 .fill-width {
     width: 100%;
+
 }
 
 .fill-height {
@@ -25,10 +26,16 @@
 
 .card .number-top {
     font-size: 24px;
+    display: flex;
+    margin-top: 6%;
+    margin-left: 5%;
 }
 
 .card .number-bot {
     font-size: 24px;
+    display: flex;
+    margin-bottom: 6%;
+    margin-right: 5%;
     -webkit-transform: rotate(-180deg);
     -moz-transform: rotate(-180deg);
     -o-transform: rotate(-180deg);

@@ -213,6 +213,9 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Controllers\DecksController.cs" />
     <Compile Include="Controllers\CardsController.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="Models\Hand.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Card.cs" />
