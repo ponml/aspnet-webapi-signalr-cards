@@ -21,6 +21,7 @@ namespace aspnet_webapi_signalr_cards
 
         public DbSet<Card> Cards { get; set; }
         public DbSet<Deck> Decks { get; set; }
+        public DbSet<Player> Players { get; set; }
     }
 
     public static class CardsContextManager
