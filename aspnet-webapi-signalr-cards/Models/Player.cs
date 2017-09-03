@@ -11,8 +11,7 @@ namespace aspnet_webapi_signalr_cards.Models
         public string WebSocketId { get; set; }
         public string Name { get; set; }
         public int TeamId { get; set; }
-        public int Score { get; set; }
-        public bool IsDealer { get; set; }
-        public virtual ICollection<Card> Cards { get; set; }
+        public float Score { get; set; }
+        public int IsDealer { get; set; }
     }
 }

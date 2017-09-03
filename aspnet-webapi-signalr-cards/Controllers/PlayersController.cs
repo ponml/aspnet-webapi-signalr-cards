@@ -51,7 +51,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
         }
         public IHttpActionResult Put([FromBody]Player player, int id)
         {
-            using (var dbContext = ContextManager.GetContext())
+            using (var dbContext = CardsContextManager.GetContext())
             {
                 Player newPlayer = null;
 
@@ -71,7 +71,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
                 {
                     newPlayer = new Player
                     {
-                        WebScoketId = player.WebSocketId,
+                        WebSocketId = player.WebSocketId,
                         Name = player.Name,
                         TeamId = player.TeamId,
                         Score = player.Score
