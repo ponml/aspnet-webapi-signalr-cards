@@ -13,7 +13,9 @@ class Deck extends React.Component {
             cards: this.data.Cards.map(function (card, index) {
                 return (
                     <li key={index}>
-                        <Card key={card.Id} data={card} />
+                        <div className="flex">
+                            <Card key={card.Id} data={card} />
+                        </div>
                     </li>
                 );
             })

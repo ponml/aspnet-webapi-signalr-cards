@@ -1,0 +1,49 @@
+Notes:
+
+Authorotative game server. Dealer player has some special privledges, enforced by server knowing which websocketId is the dealer
+
+
+
+General card game model:
+GameState {
+    players: [],
+    game: {}
+    dealer: {}
+    score: {}
+    
+}
+
+Player {
+    id
+    position
+    score
+    Hand: [
+        Cards:[{
+            value,
+            value,
+            value
+        }]
+    ]
+}
+
+Game {
+    Rounds: [{
+		DealtCards: [], (instance of "deck" or "cardgroup")
+		UndealtCards: [], (instance of "deck" or "cardgroup")
+		DiscardedCards: [], (instance of "deck" or "cardgroup")
+        Tricks: [{
+            Actions: [{
+                play,
+                discard,
+                pass,
+                pickup,
+				end-round ?
+				playerId
+            }]  
+        }]
+    }]
+}
+-> each action by a player sets the game state.
+-> dealer can rewind state?
+-> player can rewind personal state, before another state change occurs?
+-> Could model this into tables, and the sort order of the Actions acts as a rewind/fast forward button to recreate state.

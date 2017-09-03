@@ -93,6 +93,52 @@ namespace aspnet_webapi_signalr_cards.Controllers
                 return Ok(newCard);
             }
         }
+        public IHttpActionResult Put([FromBody]Card card, int id)
+        {
+            using (var dbContext = CardsContextManager.GetContext())
+            {
+                Card newCard = null;
+                var cardQuery =
+                    from c in dbContext.Cards
+                    where c.Id == id
+                    select c;
+
+                var result = cardQuery.FirstOrDefault();
+
+                if (result != null)
+                {
+                    result.DeckId = card.DeckId;
+                    result.Name = card.Name;
+                    result.Value = card.Value;
+                    result.BackImageFileName = card.BackImageFileName;
+                    result.FrontImageFileName = card.FrontImageFileName;
+                    result.Suit = card.Suit;
+                }
+                else
+                {
+                    newCard = new Card
+                    {
+                        DeckId = card.DeckId,
+                        Name = card.Name,
+                        Value = card.Value,
+                        BackImageFileName = card.BackImageFileName,
+                        FrontImageFileName = card.FrontImageFileName,
+                        Suit = card.Suit
+                    };
+                    dbContext.Cards.Add(newCard);
+                }
+
+                dbContext.SaveChanges();
+                if (newCard != null)
+                {
+                    return Ok(newCard);
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+        }
     }
 }
 

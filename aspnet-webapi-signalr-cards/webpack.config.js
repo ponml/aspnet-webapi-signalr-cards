@@ -1,4 +1,5 @@
-﻿const path = require('path');
+﻿/// <binding BeforeBuild='Run - Development' />
+const path = require('path');
 
 module.exports = {
 	entry:  './index.js',		
@@ -9,8 +10,9 @@ module.exports = {
 	devtool: 'eval-source-map',
 	module: {
 		loaders: [
-				{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
 		]
     }
 
 }
+//            { test: /\.less$/, loader: 'less-loader' }
