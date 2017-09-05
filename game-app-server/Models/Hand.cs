@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace aspnet_webapi_signalr_cards.Game
+namespace game_app_server.Models
 {
-    public class Game
+    public class Hand
     {
     }
 }
