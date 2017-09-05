@@ -180,6 +180,7 @@
     <Content Include="Images\hearts.svg" />
     <Content Include="Images\spades.svg" />
     <Content Include="index.js" />
+    <Content Include="Scripts\Player.js" />
     <Content Include="Scripts\Deck.js" />
     <Content Include="Scripts\Card.js" />
     <Content Include="Scripts\ChatWindow.js" />
@@ -211,9 +212,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CardsContext.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\DecksController.cs" />
     <Compile Include="Controllers\CardsController.cs" />
+    <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Hubs\GameHub.cs" />
     <Compile Include="Models\Hand.cs" />

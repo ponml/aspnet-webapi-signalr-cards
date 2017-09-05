@@ -1,15 +1,15 @@
-﻿using aspnet_webapi_signalr_cards.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-
-namespace aspnet_webapi_signalr_cards.Controllers
+﻿ ﻿using aspnet_webapi_signalr_cards.Models;
+ using Newtonsoft.Json;
+ using System;
+ using System.Collections.Generic;
+ using System.Data.SQLite;
+ using System.IO;
+ using System.Linq;
+ using System.Net;
+ using System.Net.Http;
+ using System.Web.Http;
+ 
+ namespace aspnet_webapi_signalr_cards.Controllers
 {
     public class PlayersController : ApiController
     {
@@ -92,7 +92,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
         }
     }
 }
-
-
-
-//https://stackoverflow.com/questions/38557170/simple-example-using-system-data-sqlite-with-entity-framework-6
+ 
+ 
+ 
+ //https://stackoverflow.com/questions/38557170/simple-example-using-system-data-sqlite-with-entity-framework

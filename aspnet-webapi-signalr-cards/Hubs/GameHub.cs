@@ -12,6 +12,7 @@ namespace aspnet_webapi_signalr_cards.Hubs
     {
         public void PlayerJoined(string name)
         {
+            
             Clients.All.broadcastMessage(name, "joined the lobby");
         }
 
