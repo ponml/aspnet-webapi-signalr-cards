@@ -4,38 +4,32 @@ import axios from 'axios';
 import Card from './Scripts/Card.js';
 import Deck from './Scripts/Deck.js';
 import ChatWindow from './Scripts/ChatWindow.js';
+import { Router, Route } from 'react-router';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         var me = this;
         me.state = {
-            deck: []
+            lobbies: []
         };
-        me.signalRConnection = $.connection;
-        me.signalRConnection.hub.start().done(function () { });
-        me.chatHub = me.signalRConnection.chatHub;
         me.init(props);
     }
 
     init(props) {
         var me = this;
-        // Send an AJAX request
-        return axios.get("api/decks?id=1").then(function (response) {
-            // On success, 'data' contains a list of cards.
-            var data = response.data;
-            me.setState({
-                deck: <Deck key={data.Id} data={data} />
-            });
-        });
+        me.signalRConnection = $.connection;
+        me.signalRConnection.hub.start().done(function () { });
+        me.lobbyHub = me.signalRConnection.lobbyHub;
     }
 
-    clickCard(card) {
-
+    joinLobby(lobby) {
+        me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, lobby.name);
+        window.location = window.location + "/lobby/" + lobby.name;
     }
 
-    getCard(Id) {
-
+    createLobby(name) {
+        joinLobby({ name: name });        
     }
 
     componentDidMount() {
@@ -45,16 +39,27 @@ class App extends React.Component {
     }
 
     render() {
+
+        var lobbies = this.state.lobbies.map((lobby, index) => {
+            return (
+                <li key={index}>
+                    <div className="flex">
+                        <span>{lobby.name}</span>
+                        <button>JOIN</button>
+                    </div>
+                </li>
+            )
+        });
+
         return (
             <div>
                 <div className="container">
-                    <ChatWindow chatHub={this.chatHub} />
+                    <ul>
+                        {lobbies}
+                    </ul>
                 </div>
                 <div>
-                    <h2>Deck</h2>
-                    <div id="deck">
-                        { this.state.deck }
-                    </div>
+>
                 </div>
             </div>
         );
@@ -64,7 +69,10 @@ class App extends React.Component {
 
 $(document).ready(function () {
     ReactDOM.render(
-        <App name="Cards" />,
+        <Router>
+            <Route path="/" component={App} />
+            <Route path="/lobby/:name" component={Lobby} />
+        </Router>,
         document.getElementById('root')
     );
 });

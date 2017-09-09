@@ -4,16 +4,16 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
-using game_app_server.Models;
+using aspnet_webapi_signalr_cards.Models;
 
 namespace game_app_server.Hubs
 {
     public class GameHub : Hub
     {
-        public void PlayerJoined(string name)
+        public void PlayerJoined(Player player)
         {
             
-            Clients.All.broadcastMessage(name, "joined the lobby");
+            Clients.All.broadcastMessage(player.Name, "joined the lobby");
         }
 
         public void Send(string name, string message)
