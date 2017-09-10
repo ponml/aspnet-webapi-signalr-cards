@@ -1,10 +1,12 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
+import ChatWindow from './ChatWindow.js';
 
 class Lobby extends React.Component {
     constructor(props) {
         super(props);
         var me = this;
+        debugger;
         me.state = {
             
         };
@@ -21,4 +23,4 @@ class Lobby extends React.Component {
     }
 }
 
-module.exports = ChatWindow;
+module.exports = Lobby;

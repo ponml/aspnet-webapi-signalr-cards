@@ -14,9 +14,14 @@ namespace game_app_server
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
+                name: "Application",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                "Default",
+                "{*.}",
+                 new { controller = "Home", action = "Index" }
             );
         }
     }

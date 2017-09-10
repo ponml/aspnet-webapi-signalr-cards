@@ -3,17 +3,22 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Card from './Scripts/Card.js';
 import Deck from './Scripts/Deck.js';
-import ChatWindow from './Scripts/ChatWindow.js';
-import { Router, Route } from 'react-router';
+import Lobby from './Scripts/Lobby.js';
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         var me = this;
         me.state = {
-            lobbies: []
+            lobbies: [],
+            newLobbyName: ""
         };
         me.init(props);
+
+        me.handleNewLobby = me.handleNewLobby.bind(me);
+        me.handleNewLobbyChange = me.handleNewLobbyChange.bind(me);
+
     }
 
     init(props) {
@@ -24,12 +29,32 @@ class App extends React.Component {
     }
 
     joinLobby(lobby) {
+        var me = this;
         me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, lobby.name);
-        window.location = window.location + "/lobby/" + lobby.name;
+        window.location = window.location.href + "lobby/" + lobby.name;
     }
 
     createLobby(name) {
-        joinLobby({ name: name });        
+        var me = this;
+        me.joinLobby({ name: name });        
+    }
+
+    
+    handleNewLobby(e) {
+        var me = this;
+        if (e.keyCode == 13) {
+            me.createLobby(me.state.newLobbyName);
+            me.setState({
+                newLobbyName: ""
+            });
+        }
+    }
+
+    handleNewLobbyChange(e) {
+        var me = this;
+        me.setState({
+            newLobbyName: e.target.value
+        });
     }
 
     componentDidMount() {
@@ -40,27 +65,28 @@ class App extends React.Component {
 
     render() {
 
+        
         var lobbies = this.state.lobbies.map((lobby, index) => {
+            var join = function () { this.joinLobby(lobby.name) };
             return (
                 <li key={index}>
                     <div className="flex">
                         <span>{lobby.name}</span>
-                        <button>JOIN</button>
+                        <button onClick={join}>JOIN</button>
                     </div>
                 </li>
             )
         });
-
+        lobbies = lobbies ? lobbies : null;
         return (
             <div>
                 <div className="container">
+                    <input type="text" placeholder={"type here"} value={this.state.newLobbyName} onKeyUp={this.handleNewLobby} onChange={this.handleNewLobbyChange} />
                     <ul>
                         {lobbies}
                     </ul>
                 </div>
-                <div>
->
-                </div>
+
             </div>
         );
     }
@@ -69,10 +95,12 @@ class App extends React.Component {
 
 $(document).ready(function () {
     ReactDOM.render(
-        <Router>
-            <Route path="/" component={App} />
-            <Route path="/lobby/:name" component={Lobby} />
-        </Router>,
+        <BrowserRouter>
+            <div>
+                <Route path="/" component={App} />
+                <Route path="/lobby/:name" component={Lobby} />
+            </div>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 });

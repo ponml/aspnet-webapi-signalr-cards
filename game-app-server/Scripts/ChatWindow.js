@@ -14,11 +14,6 @@ class ChatWindow extends React.Component {
         me.state = {
             messages: [],
             msgBoxValue: "",
-            cardInsertValue: "",
-            cardId: "",
-            foundCard: null,
-            cardNotFound: "",
-            newCard: null
         };
 
         me.handleMsgBoxSubmit = me.handleMsgBoxSubmit.bind(me);
