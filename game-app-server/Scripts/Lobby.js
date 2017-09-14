@@ -15,7 +15,7 @@ class Lobby extends React.Component {
     render() {
         return (
             <div>
-                <h1>Lobby Name {me.props.name}</h1>
+                <h1>Lobby Name {this.props.name}</h1>
                 <h2>Chat</h2>
                 <ChatWindow />
             </div>

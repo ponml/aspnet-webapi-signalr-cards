@@ -12,6 +12,7 @@ namespace game_app_server
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("");
 
             routes.MapRoute(
                 name: "Application",
@@ -20,7 +21,7 @@ namespace game_app_server
             );
             routes.MapRoute(
                 "Default",
-                "{*.}",
+                "{*url}",
                  new { controller = "Home", action = "Index" }
             );
         }

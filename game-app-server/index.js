@@ -4,7 +4,7 @@ import axios from 'axios';
 import Card from './Scripts/Card.js';
 import Deck from './Scripts/Deck.js';
 import Lobby from './Scripts/Lobby.js';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -81,6 +81,7 @@ class App extends React.Component {
         return (
             <div>
                 <div className="container">
+                    bwahh
                     <input type="text" placeholder={"type here"} value={this.state.newLobbyName} onKeyUp={this.handleNewLobby} onChange={this.handleNewLobbyChange} />
                     <ul>
                         {lobbies}
@@ -95,12 +96,12 @@ class App extends React.Component {
 
 $(document).ready(function () {
     ReactDOM.render(
-        <BrowserRouter>
+        <HashRouter>
             <div>
-                <Route path="/" component={App} />
-                <Route path="/lobby/:name" component={Lobby} />
+            <Route exact path="/" component={App} />
+            <Route exact path="/lobby/:name" component={Lobby} />
             </div>
-        </BrowserRouter>,
+        </HashRouter>,
         document.getElementById('root')
     );
 });
