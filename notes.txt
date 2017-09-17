@@ -47,3 +47,12 @@ Game {
 -> dealer can rewind state?
 -> player can rewind personal state, before another state change occurs?
 -> Could model this into tables, and the sort order of the Actions acts as a rewind/fast forward button to recreate state.
+
+
+Cards and Deck and Game state could be maintained by Game Server
+
+
+client -> game Server -> Card API / storage
+
+separate the web api server
+make a separate MVC? application that runs signalR, and maintains game state?

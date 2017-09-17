@@ -15,7 +15,7 @@ namespace aspnet_webapi_signalr_cards
             WebApiConfig.Register(httpConfiguration);
             app.UseWebApi(httpConfiguration);
             // Any connection or hub wire up and configuration should go here
-            app.MapSignalR();
+            
 
         }
     }

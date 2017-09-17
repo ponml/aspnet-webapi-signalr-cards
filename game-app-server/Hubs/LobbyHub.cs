@@ -5,14 +5,14 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 
-namespace aspnet_webapi_signalr_cards.Hubs
+namespace game_app_server.Hubs
 {
-    public class ChatHub : Hub
+    public class LobbyHub : Hub
     {
-        public void Send(string name, string message)
+        public void JoinLobby(Guid connectionId, string lobbyName)
         {
             // Call the addNewMessageToPage method to update clients.
-            Clients.All.broadcastMessage(name, message);
+            Console.WriteLine("JOINED LOBBY: {0}", lobbyName);
         }
     }
 }
