@@ -25,12 +25,10 @@ class App extends React.Component {
         var me = this;
         me.signalRConnection = $.connection;
         me.signalRConnection.hub.start().done(function () { });
-        me.lobbyHub = me.signalRConnection.lobbyHub;
     }
 
     joinLobby(lobby) {
         var me = this;
-        me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, lobby.name);
         window.location = window.location.href + "lobby/" + lobby.name;
     }
 
