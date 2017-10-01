@@ -6,40 +6,54 @@ using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using aspnet_webapi_signalr_cards.Models;
+using Newtonsoft.Json;
 
 namespace game_app_server.Hubs
 {
     public class LobbyHub : Hub
     {
-        public static string REST_SERVER = "localhost:62549";
-        public static WebResponse SendPostRequest(string data, string url)
+        public static string REST_SERVER = "http://localhost:62549";
+
+        //Hosted web API REST Service base url  
+        public async Task<object> Get(string url)
         {
+            var lobbies = new List<Lobby>();
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(REST_SERVER);
 
-            //Data parameter Example
-            //string data = "name=" + value
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            WebRequest httpRequest = WebRequest.Create(url);
-            httpRequest.Method = "POST";
-            httpRequest.ContentType = "application/x-www-form-urlencoded";
-            httpRequest.ContentLength = data.Length;
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync(url);
 
-            var streamWriter = new StreamWriter(httpRequest.GetRequestStream());
-            streamWriter.Write(data);
-            streamWriter.Close();
-
-            return httpRequest.GetResponse();
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var response = Res.Content.ReadAsStringAsync().Result;
+                    return response;
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                }
+                else
+                {
+                    return Res.Content;
+                }
+            }
         }
 
-        public static WebResponse SendGetRequest(string url)
+        public Task<object> GetLobby(string lobbyName)
         {
-
-            WebRequest httpRequest = WebRequest.Create(url);
-            httpRequest.Method = "GET";
-
-            return httpRequest.GetResponse();
+            return Get(string.Format("api/Lobbies?name={0}", lobbyName));
         }
 
-        public void JoinLobby(Guid connectionId, string lobbyName)
+        public async Task JoinLobby(Guid connectionId, string lobbyName)
         {
             //search db for any lobbys with this name -> make http request to lobby controller in REST server
             //if result-> use that data to join the proper group in this hub
@@ -48,12 +62,14 @@ namespace game_app_server.Hubs
             //Create a new Player.cs
 
             // Call the addNewMessageToPage method to update clients.
-            var potentialLobbies = SendGetRequest(string.Format("http://{0}/api/lobbies?name={1}", REST_SERVER, lobbyName));
-            using (var response = potentialLobbies.GetResponseStream())
-            {
+            //var potentialLobbies = SendGetRequest(string.Format("http://{0}/api/lobbies?name={1}", REST_SERVER, lobbyName));
+            //using (var response = potentialLobbies.GetResponseStream())
+            //{
 
-            }
-                Console.WriteLine("JOINED LOBBY: {0}", lobbyName);
+            //}
+            var getLob = await GetLobby(lobbyName);
+            var lob = getLob;
+            Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
         }
     }
 }

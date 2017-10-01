@@ -17,9 +17,13 @@ class Lobby extends React.Component {
         }
 
         me.signalRConnection.hub.start().done(function () {
-            me.lobbyHub = me.signalRConnection.lobbyHub;
             me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, me.name);
         });
+
+        me.lobbyHub = me.signalRConnection.lobbyHub;
+        me.lobbyHub.client.joinedLobby = function (lobby) {
+            console.log(lobby);
+        };
 
         me.state = {
             

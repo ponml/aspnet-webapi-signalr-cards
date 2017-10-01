@@ -1,3 +1,21 @@
+sept 19*****************************************************************
+- join lobby should be in index (and it shouldn't be lobby hub, but like "main hub")
+- join lobby in the client should call the hub function, and that function should fire off
+the async function to get all lobbies + players and/or make a lobby and make a player.
+When that async function is finished it should send back to the original calling connectionId with some "playerJoinedLobby" signalR function.
+
+When the client gets a "playerJoinedLobby", the `.on()` should then do the appropriate nav hash 
+
+
+ORRRRRRRR
+
+Maybe just need a "loading state" in the lobby.js while the `playerJoined` while waiting on the 
+server async stuff to finish and call the playerJoinedLobby stuff with all the information.
+
+Then it could take all the info it got, and load the state of the lobby component (other players, etc);
+
+
+
 Notes:
 
 Authorotative game server. Dealer player has some special privledges, enforced by server knowing which websocketId is the dealer
@@ -56,3 +74,65 @@ client -> game Server -> Card API / storage
 
 separate the web api server
 make a separate MVC? application that runs signalR, and maintains game state?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+api examples:
+
+handleGetCardSubmit(e) {
+        var me = this;
+        if (e.keyCode == 13) {
+            return axios.get("api/cards", { params: { id: me.state.cardId } }).then(function (response) {
+                me.setState({
+                    foundCard: response.data
+                });
+            }, function (error) {
+                me.setState({
+                    foundCard: {
+                        Id: -1,
+                        Name: "Card Not Found",
+                        Value: "None"
+                    }
+                });
+            });
+        }
+    }
+
+    handleGetCardOnChange(e) {
+        var me = this;
+        me.setState({
+            cardId: e.target.value
+        });
+    }
+
+

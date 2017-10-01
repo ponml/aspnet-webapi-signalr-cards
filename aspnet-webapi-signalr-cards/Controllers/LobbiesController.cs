@@ -47,7 +47,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
             {
                 var lobbyQuery =
                     from lobby in dbContext.Lobbies
-                    where lobby.Name.Contains(name)
+                    where lobby.Name == name
                     select lobby;
 
                 var result = lobbyQuery.FirstOrDefault();
