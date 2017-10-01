@@ -53,7 +53,7 @@ namespace game_app_server.Hubs
             return Get(string.Format("api/Lobbies?name={0}", lobbyName));
         }
 
-        public async Task JoinLobby(Guid connectionId, string lobbyName)
+        public async Task<object> JoinLobby(Guid connectionId, string lobbyName)
         {
             //search db for any lobbys with this name -> make http request to lobby controller in REST server
             //if result-> use that data to join the proper group in this hub
@@ -69,7 +69,8 @@ namespace game_app_server.Hubs
             //}
             var getLob = await GetLobby(lobbyName);
             var lob = getLob;
-            Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
+            //Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
+            return lob;
         }
     }
 }
