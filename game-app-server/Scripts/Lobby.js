@@ -6,7 +6,25 @@ class Lobby extends React.Component {
     constructor(props) {
         super(props);
         var me = this;
-        debugger;
+        me.signalRConnection;
+        me.lobbyHub;
+        me.name = props.match.params.name;
+
+        if (props.signalRConnection) {
+            me.signalRConnection = props.signalRConnection;
+        } else {
+            me.signalRConnection = $.connection;
+        }
+
+        me.signalRConnection.hub.start().done(function () {
+            me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, me.name);
+        });
+
+        me.lobbyHub = me.signalRConnection.lobbyHub;
+        me.lobbyHub.client.joinedLobby = function (lobby) {
+            console.log(lobby);
+        };
+
         me.state = {
             
         };
@@ -15,7 +33,7 @@ class Lobby extends React.Component {
     render() {
         return (
             <div>
-                <h1>Lobby Name {this.props.name}</h1>
+                <h1>Lobby Name {this.name}</h1>
                 <h2>Chat</h2>
                 <ChatWindow />
             </div>
