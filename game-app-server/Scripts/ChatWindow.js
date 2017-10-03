@@ -7,9 +7,20 @@ class ChatWindow extends React.Component {
     constructor(props) {
         super(props);
         var me = this;
-        me.signalRConnection = $.connection;
-        me.signalRConnection.hub.start().done(function () { });
-        me.chatHub = me.signalRConnection.chatHub;
+        var connection = $.hubConnection();
+        me.chatHub = connection.createHubProxy('chatHub');
+
+        me.chatHub.on("broadcastMessage", function (name, message) {
+            var currentMessages = me.state.messages;
+            var newMessage = {
+                name: name,
+                msg: message
+            };
+            currentMessages.push(newMessage);
+            me.setState({ messages: currentMessages });
+        });
+
+        connection.start().done(function () { });
 
         me.state = {
             messages: [],
@@ -18,17 +29,6 @@ class ChatWindow extends React.Component {
 
         me.handleMsgBoxSubmit = me.handleMsgBoxSubmit.bind(me);
         me.handleMsgBoxOnChange = me.handleMsgBoxOnChange.bind(me);
-
-        me.chatHub.client.broadcastMessage = function (name, message) {
-            // Html encode display name and message.
-            var currentMessages = me.state.messages;
-            var newMessage = {
-                name: name,
-                msg: message
-            };
-            currentMessages.push(newMessage);
-            me.setState({ messages: currentMessages });
-        };
     }
 
     
@@ -36,7 +36,7 @@ class ChatWindow extends React.Component {
     handleMsgBoxSubmit(e) {
         var me = this;
         if (e.keyCode == 13) {
-            me.chatHub.server.send(me.chatHub.connection.id, me.state.msgBoxValue);
+            me.chatHub.invoke("send", me.chatHub.connection.id, me.state.msgBoxValue);
             me.setState({
                 msgBoxValue: ""
             });

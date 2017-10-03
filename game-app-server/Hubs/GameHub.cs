@@ -10,16 +10,16 @@ namespace game_app_server.Hubs
 {
     public class GameHub : Hub
     {
-        public void PlayerJoined(Player player)
-        {
+        //public void PlayerJoined(Player player)
+        //{
             
-            Clients.All.broadcastMessage(player.Name, "joined the lobby");
-        }
+        //    Clients.All.broadcastMessage(player.Name, "joined the lobby");
+        //}
 
-        public void Send(string name, string message)
-        {
-            // Call the addNewMessageToPage method to update clients.
-            Clients.All.broadcastMessage(name, message);
-        }
+        //public void Send(string name, string message)
+        //{
+        //    // Call the addNewMessageToPage method to update clients.
+        //    Clients.All.broadcastMessage(name, message);
+        //}
     }
 }

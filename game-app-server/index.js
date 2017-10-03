@@ -23,8 +23,6 @@ class App extends React.Component {
 
     init(props) {
         var me = this;
-        me.signalRConnection = $.connection;
-        me.signalRConnection.hub.start().done(function () { });
     }
 
     joinLobby(lobby) {
