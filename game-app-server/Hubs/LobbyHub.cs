@@ -10,67 +10,56 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using aspnet_webapi_signalr_cards.Models;
 using Newtonsoft.Json;
+using game_app_server.Resources;
 
 namespace game_app_server.Hubs
 {
     public class LobbyHub : Hub
     {
-        public static string REST_SERVER = "http://localhost:62549";
-
-        //Hosted web API REST Service base url  
-        public async Task<object> Get(string url)
+        private Task<object> MakeLobby(string lobbyName, string groupId)
         {
-            var lobbies = new List<Lobby>();
-            using (var client = new HttpClient())
+            var newLobby = new Lobby
             {
-                //Passing service base url  
-                client.BaseAddress = new Uri(REST_SERVER);
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync(url);
-
-                //Checking the response is successful or not which is sent using HttpClient  
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var response = Res.Content.ReadAsStringAsync().Result;
-                    return response;
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                }
-                else
-                {
-                    return Res.Content;
-                }
-            }
+                Name = lobbyName,
+                GroupId = groupId
+            };
+            
+            return HttpHelper.Post<Lobby>(string.Format("api/Lobbies", newLobby));
         }
 
-        public Task<object> GetLobby(string lobbyName)
+        private void DeleteLobby(int groupId)
         {
-            return Get(string.Format("api/Lobbies?name={0}", lobbyName));
+            //maybe get the lobby first, so can delete by ID?
+            HttpHelper.Delete(string.Format("api/Lobbies?groupId={0}", groupId));
+        }
+
+
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            //if this lobbygroup is empty, we should delete the lobby from the DB
+
+            Groups.Remove(Context.ConnectionId, )
+            return base.OnDisconnected(stopCalled);
         }
 
         public async Task<object> JoinLobby(Guid connectionId, string lobbyName)
         {
-            //search db for any lobbys with this name -> make http request to lobby controller in REST server
-            //if result-> use that data to join the proper group in this hub
-            //else -> create a new Lobby.cs, Create a new Group for this hub
+         
+            //  notes OCT 2
+            // need to clean up the make/delete lobby logic, need to find out if Groups have an id, or should we just use the groupName for Lobby.GroupId;
+            // do groups automatically get deleted if all people removed from them?
+            // how do we figure out we're the last person in this lobby?
+            // maybe it'd be delete the Player, and then check after if any Player exists without that LobbyId?
+            // maybe we can see if that Group has any connectionIds in it, and if not, delete the lobby.
 
-            //Create a new Player.cs
-
-            // Call the addNewMessageToPage method to update clients.
-            //var potentialLobbies = SendGetRequest(string.Format("http://{0}/api/lobbies?name={1}", REST_SERVER, lobbyName));
-            //using (var response = potentialLobbies.GetResponseStream())
-            //{
-
-            //}
-            var getLob = await GetLobby(lobbyName);
-            var lob = getLob;
+            var lobby = await HttpHelper.Get(string.Format("api/Lobbies?name={0}", lobbyName));
             //Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
-            return lob;
+            if(lobby == null)
+            {
+                await Groups.Add(Context.ConnectionId, lobbyName);
+                lobby = await MakeLobby();
+            }
+            return lobby;
         }
     }
 }
