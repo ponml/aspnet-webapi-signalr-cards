@@ -8,7 +8,7 @@ class Lobby extends React.Component {
         var me = this;
         me.signalRConnection;
         me.lobbyHub;
-        me.name = props.match.params.name;
+        me.lobbyJoinName = props.match.params.name;
 
         if (props.signalRConnection) {
             me.signalRConnection = props.signalRConnection;
@@ -16,18 +16,7 @@ class Lobby extends React.Component {
             me.signalRConnection = $.connection;
         }
 
-        me.lobbyHub = me.signalRConnection.lobbyHub;
-
-
-        me.signalRConnection.hub.start().done(function () {
-            me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, me.name).done(function (lobby) {
-                console.log("whoaaaaa: ", lobby);
-                me.setState({
-                    isLoading: false
-                });
-            });
-        });
-        
+        me.lobbyHub = me.signalRConnection.lobbyHub;        
 
         me.state = {
             isLoading: true
@@ -36,13 +25,29 @@ class Lobby extends React.Component {
 
     //make sure we don't just flash the loading icon
     componentDidMount() {
-        setTimeout(() =>
-            this.setState({ isLoading: false }), 1000
-        );
+        var me = this;
+        me.signalRConnection.hub.start().done(function () {
+            me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, me.lobbyJoinName).done(function (lobby) {
+                console.log("whoaaaaa: ", lobby);
+                try {
+                    var lobby = JSON.parse(lobby);
+                    me.setState({
+                        isLoading: false,
+                        lobby: new LobbyModel(lobby)
+                    });
+                } catch (e) {
+                    me.setState({
+                        isLoading: false,
+                        failedToJoinLobby: true
+                    });
+                }
+            });
+        });
     }
 
     render() {
         const me = this;
+        const lobbyName = me.state.lobby ? me.state.lobby.name : "";
         if (me.state.isLoading) {
             return (
                 <div>LOADING</div>
@@ -51,13 +56,21 @@ class Lobby extends React.Component {
         } else {
             return (
                 <div>
-                    <h1>Lobby Name {this.name}</h1>
+                    <h1>Lobby Name {lobbyName}</h1>
                     <h2>Chat</h2>
                     <ChatWindow />
                 </div>
             );
         }
     }
+}
+
+function LobbyModel(options) {
+    var me = this;
+    me.name = options.Name;
+    me.gameId = options.GameId;
+    me.id = options.Id;
+    me.groupId = options.GroupId;
 }
 
 module.exports = Lobby;
