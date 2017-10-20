@@ -16,15 +16,16 @@ namespace game_app_server.Hubs
 {
     public class LobbyHub : Hub
     {
-        private Task<object> MakeLobby(string lobbyName, string groupId)
+        private Task<object> MakeLobby(string lobbyName)
         {
             var newLobby = new Lobby
             {
                 Name = lobbyName,
-                GroupId = groupId
+                GroupId = lobbyName,
+                GameId = 1
             };
             
-            return HttpHelper.Post<Lobby>(string.Format("api/Lobbies", newLobby));
+            return HttpHelper.Post<Lobby>("api/Lobbies", newLobby);
         }
 
         private void DeleteLobby(int groupId)
@@ -38,7 +39,9 @@ namespace game_app_server.Hubs
         {
             //if this lobbygroup is empty, we should delete the lobby from the DB
 
-            Groups.Remove(Context.ConnectionId, )
+            //get all the connection ids in this group
+            //if none, delete lobby
+            //might need to store the connectionids in some kind of concurrentBag<>
             return base.OnDisconnected(stopCalled);
         }
 
@@ -55,10 +58,10 @@ namespace game_app_server.Hubs
             var lobby = await HttpHelper.Get(string.Format("api/Lobbies?name={0}", lobbyName));
             //Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
             if(lobby == null)
-            {
-                await Groups.Add(Context.ConnectionId, lobbyName);
-                lobby = await MakeLobby();
+            {                
+                lobby = await MakeLobby(lobbyName);
             }
+            await Groups.Add(Context.ConnectionId, lobbyName);
             return lobby;
         }
     }

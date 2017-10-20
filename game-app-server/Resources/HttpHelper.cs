@@ -13,7 +13,7 @@ namespace game_app_server.Resources
     public static class HttpHelper
     {
         public static string REST_SERVER = "http://localhost:62549";
-
+        //could maybe have an out variable for "success" or not
         //Hosted web API REST Service base url
         public static async Task<object> Get(string url)
         {
@@ -34,7 +34,8 @@ namespace game_app_server.Resources
                 {
                     //Storing the response details recieved from web api   
                     var response = Res.Content.ReadAsStringAsync().Result;
-                    return response;
+                    var deserialized = JsonConvert.DeserializeObject(response);
+                    return deserialized;
                     //Deserializing the response recieved from web api and storing into the Employee list  
                 }
                 else
@@ -74,7 +75,7 @@ namespace game_app_server.Resources
                 var jsonPayload = JsonConvert.SerializeObject(payload);
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.PostAsJsonAsync(url, jsonPayload);
+                HttpResponseMessage Res = await client.PostAsJsonAsync(url, payload);
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
