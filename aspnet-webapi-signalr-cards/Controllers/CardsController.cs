@@ -13,20 +13,20 @@ namespace aspnet_webapi_signalr_cards.Controllers
 {
     public class CardsController : ApiController
     {
-        private List<Card> LoadJson()
-        {
-            var root = AppDomain.CurrentDomain.BaseDirectory;
-            using (StreamReader r = new StreamReader(root + "/Tables/cards.json"))
-            {
-                string json = r.ReadToEnd();
-                var cards = JsonConvert.DeserializeObject<List<Card>>(json);
-                return cards;
-            }
-        }
+        //private List<Card> LoadJson()
+        //{
+        //    var root = AppDomain.CurrentDomain.BaseDirectory;
+        //    using (StreamReader r = new StreamReader(root + "/Tables/cards.json"))
+        //    {
+        //        string json = r.ReadToEnd();
+        //        var cards = JsonConvert.DeserializeObject<List<Card>>(json);
+        //        return cards;
+        //    }
+        //}
 
         public object[] GetAllCards()
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var cards =
                     from card in dbContext.Cards
@@ -41,7 +41,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
         public IHttpActionResult GetCard(int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var cardQuery =
                     from card in dbContext.Cards
@@ -59,7 +59,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
         public IHttpActionResult GetCard(int value, string suit)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var cardQuery =
                     from card in dbContext.Cards
@@ -86,7 +86,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
                 Suit = card.Suit
             };
 
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 dbContext.Cards.Add(newCard);
                 dbContext.SaveChanges();
@@ -95,7 +95,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
         }
         public IHttpActionResult Put([FromBody]Card card, int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 Card newCard = null;
                 var cardQuery =

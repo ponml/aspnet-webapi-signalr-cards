@@ -16,7 +16,7 @@
 
         public IHttpActionResult GetPlayer(int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var playerQuery =
                     from player in dbContext.Players
@@ -42,7 +42,7 @@
                 Score = player.Score
             };
 
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 dbContext.Players.Add(newPlayer);
                 dbContext.SaveChanges();
@@ -51,7 +51,7 @@
         }
         public IHttpActionResult Put([FromBody]Player player, int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 Player newPlayer = null;
 

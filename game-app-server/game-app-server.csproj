@@ -218,6 +218,7 @@
     <Compile Include="..\aspnet-webapi-signalr-cards\Models\Player.cs">
       <Link>Models\Player.cs</Link>
     </Compile>
+    <Compile Include="ApiContext\ApiClient.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

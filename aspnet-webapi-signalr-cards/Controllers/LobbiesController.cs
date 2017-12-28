@@ -15,7 +15,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
     {
         public object[] GetAllLobbies()
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var lobbyQuery =
                     from lobby in dbContext.Lobbies
@@ -28,7 +28,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
         public IHttpActionResult GetLobby(int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var lobbyQuery =
                     from lobby in dbContext.Lobbies
@@ -43,7 +43,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
         public IHttpActionResult GetLobby(string name)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var lobbyQuery =
                     from lobby in dbContext.Lobbies
@@ -63,7 +63,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
                 Name = lobby.Name
             };
 
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 dbContext.Lobbies.Add(newLobby);
                 dbContext.SaveChanges();
@@ -72,7 +72,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
         }
         public IHttpActionResult Put([FromBody]Lobby lobby, int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 Lobby newLobby = null;
                 var lobbyQuery   =

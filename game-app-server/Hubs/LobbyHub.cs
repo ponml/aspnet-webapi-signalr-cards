@@ -9,48 +9,18 @@ using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using aspnet_webapi_signalr_cards.Models;
+using game_app_server;
 using Newtonsoft.Json;
+using game_app_server.ApiContext;
 
 namespace game_app_server.Hubs
 {
     public class LobbyHub : Hub
     {
-        public static string REST_SERVER = "http://localhost:62549";
-
-        //Hosted web API REST Service base url  
-        public async Task<object> Get(string url)
+        public Task<Lobby> GetLobby(string lobbyName)
         {
-            var lobbies = new List<Lobby>();
-            using (var client = new HttpClient())
-            {
-                //Passing service base url  
-                client.BaseAddress = new Uri(REST_SERVER);
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync(url);
-
-                //Checking the response is successful or not which is sent using HttpClient  
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var response = Res.Content.ReadAsStringAsync().Result;
-                    return response;
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                }
-                else
-                {
-                    return Res.Content;
-                }
-            }
-        }
-
-        public Task<object> GetLobby(string lobbyName)
-        {
-            return Get(string.Format("api/Lobbies?name={0}", lobbyName));
+            var apiHttpClient = ApiHttpClient.Client;
+            return apiHttpClient.GetAsync<Lobby>(string.Format("api/Lobbies?name={0}", lobbyName));
         }
 
         public async Task<object> JoinLobby(Guid connectionId, string lobbyName)

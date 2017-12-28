@@ -4,7 +4,7 @@ import axios from 'axios';
 import Card from './Scripts/Card.js';
 import Deck from './Scripts/Deck.js';
 import Lobby from './Scripts/Lobby.js';
-import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
@@ -21,15 +21,6 @@ class App extends React.Component {
 
     }
 
-    init(props) {
-        var me = this;
-    }
-
-    joinLobby(lobby) {
-        var me = this;
-        window.location = window.location.href + "lobby/" + lobby.name;
-    }
-
     createLobby(name) {
         var me = this;
         me.joinLobby({ name: name });        
@@ -38,7 +29,7 @@ class App extends React.Component {
     
     handleNewLobby(e) {
         var me = this;
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             me.createLobby(me.state.newLobbyName);
             me.setState({
                 newLobbyName: ""
@@ -59,11 +50,20 @@ class App extends React.Component {
     componentWillUnmount() {
     }
 
+    init(props) {
+        var me = this;
+    }
+
+    joinLobby(lobby) {
+        var me = this;
+        window.location = window.location.href + "lobby/" + lobby.name;
+    }
+
     render() {
 
         
         var lobbies = this.state.lobbies.map((lobby, index) => {
-            var join = function () { this.joinLobby(lobby.name) };
+            var join = function () { this.joinLobby(lobby.name); };
             return (
                 <li key={index}>
                     <div className="flex">
@@ -71,7 +71,7 @@ class App extends React.Component {
                         <button onClick={join}>JOIN</button>
                     </div>
                 </li>
-            )
+            );
         });
         lobbies = lobbies ? lobbies : null;
         return (

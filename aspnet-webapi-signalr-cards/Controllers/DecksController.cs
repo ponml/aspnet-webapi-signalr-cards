@@ -15,7 +15,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
     {
         public object[] GetAllDecks()
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var deckQuery = (
                     from deck in dbContext.Decks
@@ -36,7 +36,7 @@ namespace aspnet_webapi_signalr_cards.Controllers
 
         public IHttpActionResult GetDeck(int id)
         {
-            using (var dbContext = CardsContextManager.GetContext())
+            using (var dbContext = DbAppContextManager.GetContext())
             {
                 var deckQuery = (
                     from deck in dbContext.Decks
