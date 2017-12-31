@@ -137,7 +137,9 @@
     <Compile Include="Controllers\DecksController.cs" />
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
-    <Compile Include="Migrations\Initialize.cs" />
+    <Compile Include="Migrations\IMigrate.cs" />
+    <Compile Include="Migrations\Migration1.cs" />
+    <Compile Include="Migrations\Migrator.cs" />
     <Compile Include="Models\Migration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Deck.cs" />
