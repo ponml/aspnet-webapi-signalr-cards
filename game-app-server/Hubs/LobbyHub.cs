@@ -12,18 +12,20 @@ using aspnet_webapi_signalr_cards.Models;
 using game_app_server;
 using Newtonsoft.Json;
 using game_app_server.ApiContext;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace game_app_server.Hubs
 {
     public class LobbyHub : Hub
     {
-        public Task<Lobby> GetLobby(string lobbyName)
+        private Task<Lobby> GetLobby(string lobbyName)
         {
             var apiHttpClient = ApiHttpClient.Client;
             return apiHttpClient.GetAsync<Lobby>(string.Format("api/Lobbies?name={0}", lobbyName));
         }
 
-        public async Task<object> JoinLobby(Guid connectionId, string lobbyName)
+        [HubMethodName("JoinLobby")]
+        public Task<Lobby> JoinLobby(Guid connectionId, string lobbyName)
         {
             //search db for any lobbys with this name -> make http request to lobby controller in REST server
             //if result-> use that data to join the proper group in this hub
@@ -37,10 +39,16 @@ namespace game_app_server.Hubs
             //{
 
             //}
-            var getLob = await GetLobby(lobbyName);
-            var lob = getLob;
+            //var getLob = await GetLobby(lobbyName);
+            //var lob = getLob;
             //Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
-            return lob;
+
+            //return Task.Run(() =>
+            //{
+            //    return new Lobby();
+            //});
+
+            return GetLobby(lobbyName);
         }
     }
 }

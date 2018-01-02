@@ -136,3 +136,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# Visual Studio 2015 cache/options directory
+.vs/
+

@@ -37,15 +37,19 @@ namespace game_app_server.ApiContext
 
     public class ApiClient
     {
-        public static string REST_SERVER = "http://localhost:62549";
-        private static HttpClient httpClient = new HttpClient();
+        public static string REST_SERVER = "http://localhost:62549/";
+        private static HttpClient httpClient;
+        public ApiClient()
+        {
+            httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(REST_SERVER);
+        }
         //Hosted web API REST Service base url  
         public async Task<TResponse> GetAsync<TResponse>(string url)
             where TResponse : class
         {
             var uri = url;
             //Passing service base url  
-
             httpClient.DefaultRequestHeaders.Clear();
             //Define request data format  
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

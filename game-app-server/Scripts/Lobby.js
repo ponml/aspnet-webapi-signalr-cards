@@ -8,20 +8,29 @@ class Lobby extends React.Component {
         var me = this;
         me.signalRConnection;
         me.lobbyHub;
-        me.name = props.match.params.name;
-
+        //me.name = props.match.params.name;
+        var requestedLobbyName = props.match.params.name;
         if (props.signalRConnection) {
             me.signalRConnection = props.signalRConnection;
         } else {
             me.signalRConnection = $.connection;
         }
 
+        $.connection.hub.error(function (error) {
+            console.log('SignalR error: ' + error)
+        });
+
         me.lobbyHub = me.signalRConnection.lobbyHub;
 
-
         me.signalRConnection.hub.start().done(function () {
-            me.lobbyHub.server.joinLobby(me.lobbyHub.connection.id, me.name).done(function (lobby) {
+            var lobbyCall = me.lobbyHub.server.JoinLobby(me.lobbyHub.connection.id, requestedLobbyName);
+            lobbyCall.always(function (r) {
+                console.log(r);
+            });
+
+            lobbyCall.done(function (lobby) {
                 console.log("whoaaaaa: ", lobby);
+                me.name = lobby.Name;
                 me.setState({
                     isLoading: false
                 });
