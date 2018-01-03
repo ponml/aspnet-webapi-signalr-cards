@@ -20,12 +20,16 @@ namespace game_app_server.Hubs
     {
         private Task<Lobby> GetLobby(string lobbyName)
         {
-            var apiHttpClient = ApiHttpClient.Client;
-            return apiHttpClient.GetAsync<Lobby>(string.Format("api/Lobbies?name={0}", lobbyName));
+            return ApiHttpClient.Client.GetAsync<Lobby>(string.Format("api/Lobbies?name={0}", lobbyName));
+        }
+
+        private Task<Card[]> GetCards()
+        {
+            return ApiHttpClient.Client.GetAsync<Card[]>(string.Format("api/cards"));
         }
 
         [HubMethodName("JoinLobby")]
-        public Task<Lobby> JoinLobby(Guid connectionId, string lobbyName)
+        public async Task<object> JoinLobby(Guid connectionId, string lobbyName)
         {
             //search db for any lobbys with this name -> make http request to lobby controller in REST server
             //if result-> use that data to join the proper group in this hub
@@ -35,20 +39,28 @@ namespace game_app_server.Hubs
 
             // Call the addNewMessageToPage method to update clients.
             //var potentialLobbies = SendGetRequest(string.Format("http://{0}/api/lobbies?name={1}", REST_SERVER, lobbyName));
-            //using (var response = potentialLobbies.GetResponseStream())
-            //{
 
-            //}
-            //var getLob = await GetLobby(lobbyName);
-            //var lob = getLob;
-            //Clients.Caller.joinedLobby(JsonConvert.SerializeObject(lob));
+            var cards = await GetCards();
 
-            //return Task.Run(() =>
-            //{
-            //    return new Lobby();
-            //});
+            Lobby requestedLobby = await GetLobby(lobbyName);
+            
+            if (requestedLobby == null)
+            {
+                requestedLobby = new Lobby
+                {
+                    Name = lobbyName,
+                };
+                var newLobby = await ApiHttpClient.Client.PostAsync<Lobby>("api/Lobbies", requestedLobby);
+                requestedLobby = newLobby;
+            }
 
-            return GetLobby(lobbyName);
+            
+
+            return new
+            {
+                lobby = requestedLobby,
+                cards = cards
+            };
         }
     }
 }

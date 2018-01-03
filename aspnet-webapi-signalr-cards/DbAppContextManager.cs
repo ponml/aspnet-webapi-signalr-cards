@@ -30,7 +30,7 @@ namespace aspnet_webapi_signalr_cards
     {
         public static DbAppContext GetContext()
         {
-            return new DbAppContext("C:\\SQLITE\\dbs\\cards-migration-test.db");
+            return new DbAppContext("C:\\SQLITE\\dbs\\cards.db");
         }
     }
 }

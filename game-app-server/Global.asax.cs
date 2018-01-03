@@ -12,7 +12,7 @@ namespace game_app_server
         protected void Application_Start()
         {
             //AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
             //app.MapSignalR();
         }
     }

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import ChatWindow from './ChatWindow.js';
+import Card from './Card.js';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -28,26 +29,36 @@ class Lobby extends React.Component {
                 console.log(r);
             });
 
-            lobbyCall.done(function (lobby) {
-                console.log("whoaaaaa: ", lobby);
-                me.name = lobby.Name;
+            lobbyCall.done(function (response) {
+                console.log("whoaaaaa: ", response);
+                me.name = response.lobby.Name;
                 me.setState({
-                    isLoading: false
+                    isLoading: false,
+                    cards: response.cards.map((card, index) => {
+                        return (
+                            <li key={index}>
+                                <div className="flex">
+                                    <Card data={card}></Card>
+                                </div>
+                            </li>
+                        );
+                    })
                 });
             });
         });
         
 
         me.state = {
-            isLoading: true
+            isLoading: true,
+            cards: []
         };
     }
 
     //make sure we don't just flash the loading icon
     componentDidMount() {
-        setTimeout(() =>
-            this.setState({ isLoading: false }), 1000
-        );
+        //setTimeout(() =>
+        //    this.setState({ isLoading: false }), 1000
+        //);
     }
 
     render() {
@@ -63,6 +74,9 @@ class Lobby extends React.Component {
                     <h1>Lobby Name {this.name}</h1>
                     <h2>Chat</h2>
                     <ChatWindow />
+                    <div>
+                        {this.state.cards}
+                    </div>
                 </div>
             );
         }

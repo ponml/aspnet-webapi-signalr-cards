@@ -12,7 +12,7 @@ namespace game_app_server.Hubs
         public void Send(string name, string message)
         {
             // Call the addNewMessageToPage method to update clients.
-            Clients.All.broadcastMessage(name, string.Format("YUP {0}", message));
+            Clients.All.broadcastMessage(name, string.Format("{0}", message));
         }
     }
 }
